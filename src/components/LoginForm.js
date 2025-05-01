@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaUserShield } from 'react-icons/fa';
 import './LoginForm.css';
+import { login } from '../services/authService';
 
 function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
@@ -15,21 +16,7 @@ function LoginForm() {
         setError(null);
 
         try {
-            const response = await fetch('https://trilo-api.kiebot.com/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Login failed');
-            }
-
-
-            const data = await response.json();
+            const data = await login(email, password);
             console.log('Login successful:', data);
         } catch (err) {
             setError(err.message);
@@ -39,14 +26,16 @@ function LoginForm() {
     };
 
     return (
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit} autoComplete="off">
             <div className="input-wrapper">
                 <FaEnvelope className="icon left" />
                 <input
                     placeholder="Email"
                     className="input-field"
                     type="email"
+                    name="email"
                     value={email}
+                    autoComplete='off'
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
@@ -59,6 +48,8 @@ function LoginForm() {
                     className="input-field"
                     type={showPassword ? 'text' : 'password'}
                     value={password}
+                    name="password"
+                    autoComplete='new-password'
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
