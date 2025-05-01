@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaUserShield } from 'react-icons/fa';
 import './LoginForm.css';
 import { login } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
@@ -10,6 +11,7 @@ function LoginForm() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -18,6 +20,7 @@ function LoginForm() {
         try {
             const data = await login(email, password);
             console.log('Login successful:', data);
+            navigate('/organizations');
         } catch (err) {
             setError(err.message);
         } finally {
