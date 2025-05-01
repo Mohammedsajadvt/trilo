@@ -1,11 +1,6 @@
-import React from 'react';
-function Organizations(){
-    return (
-        <div>
-
-        </div>
-    );
+import AppLayout from '../layout/AppLayout'
+function Organization(){
+    return  <AppLayout></AppLayout>;
 }
 
-
-export default Organizations;
+export default Organization;

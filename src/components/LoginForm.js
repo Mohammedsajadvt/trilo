@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaUserShield } from 'react-icons/fa';
 import './LoginForm.css';
-import { login } from '../services/authService';
+import { login } from '../services/ApiService';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {

@@ -1,0 +1,11 @@
+
+.brandName{
+    all: unset;
+    color: #3a8bbb;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+.svg{
+    text-align: center;
+}
