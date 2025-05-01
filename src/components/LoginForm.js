@@ -15,7 +15,7 @@ function LoginForm() {
         setError(null);
 
         try {
-            const response = await fetch('https://trilo-api.kiebot.com/api/organizations', {
+            const response = await fetch('https://trilo-api.kiebot.com/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,6 +27,7 @@ function LoginForm() {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Login failed');
             }
+
 
             const data = await response.json();
             console.log('Login successful:', data);
