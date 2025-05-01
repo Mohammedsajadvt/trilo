@@ -1,11 +1,12 @@
+import './Contents.css'
+import LoginForm from './LoginForm.js'
+import Demo from './Demo.js'
 function Contents() {
     return (
-        <div>
-            <form className="form">
-               <input></input>
-               <input></input>
-            </form>
-        </div>
+       <div className='container'>
+       <LoginForm/>
+       <Demo/>
+       </div>
     );
 }
 
