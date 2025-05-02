@@ -9,3 +9,22 @@
 .svg{
     text-align: center;
 }
+.logout{
+    color: white;
+    border-color: #3a8bbb;
+    background-color: #3a8bbb;
+    border-radius: 5px;
+}
+.logout:hover{
+    background-color: #4f90b5;
+}
+.createButton{
+    color: white;
+    border-color: #3a8bbb;
+    background-color: #3a8bbb;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.createButton:hover{
+    background-color: #4f90b5;
+}

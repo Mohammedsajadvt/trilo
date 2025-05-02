@@ -74,12 +74,12 @@ const AppLayout = ({ children }) => {
                         >
                             <path d="M12 7V3H2v18h20V7zM6 19H4v-2h2zm0-4H4v-2h2zm0-4H4V9h2zm0-4H4V5h2zm4 12H8v-2h2zm0-4H8v-2h2zm0-4H8V9h2zm0-4H8V5h2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8zm-2-8h-2v2h2zm0 4h-2v2h2z" />
                         </svg>
-                        <a className="brandName navbar-brand" href="/">
+                        <a className="brandName" href="/">
                             MedicarePro
                         </a>
                     </div>
                     <button
-                        className="btn btn-outline-secondary btn-sm"
+                        className="logout"
                         onClick={handleLogout}
                     >
                         Logout
@@ -93,7 +93,7 @@ const AppLayout = ({ children }) => {
                 </div>
                 <div className='d-flex flex-row justify-content-between'>
                 <h4 className="mb-4">Organizations</h4>
-                <button className='btn' onClick={()=> navigate('/organizations/create')}>Add Organizations</button>
+                <button className='createButton' onClick={()=> navigate('/organizations/create')}>Add Organizations</button>
                 </div>
                 {organizations.length === 0 ? (
                     <p className="text-muted">No organizations found.</p>
@@ -101,14 +101,14 @@ const AppLayout = ({ children }) => {
                     <div className="row row-cols-1 row-cols-md-3 g-4">
                         {organizations.map(org => (
                             <div className="col" key={org.id}>
-                                <div className="card shadow-sm h-100">
+                                <div className="card shadow-lg h-100">
                                     <div className="card-body position-relative">
                                        <div className='d-flex flex-row justify-content-between'>
                                        
                                         <h5 className="card-title">{org.name || 'Unnamed Organization'}</h5>
                                         <button
                                             className="btn "
-                                            onClick={() => console.log('Edit clicked for', org.id)}
+                                            onClick={() => navigate(`/organizations/:id`)}
                                         >
                                             <MdiPencil/>
                                         </button>

@@ -2,8 +2,8 @@ import './Demo.css'
 function Demo(){
     return (
     <div>
-        <h4>Demo Credentials:</h4>
-        <h5>Email: admin@cityhealthcare.com | Password: password123</h5>
+        <h5>Demo Credentials:</h5>
+        <h6>Email: admin@cityhealthcare.com | Password: password123</h6>
     </div>
     );       
 }

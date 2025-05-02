@@ -1,0 +1,10 @@
+.submitButton{
+    color: white;
+    border-color: #3a8bbb;
+    background-color: #3a8bbb;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.submitButton:hover{
+    background-color: #4f90b5;
+}

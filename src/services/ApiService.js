@@ -68,26 +68,61 @@ export const logout = () => {
 };
 
 export const createOrganization = async (organization) => {
-    try {
-        const authToken = localStorage.getItem('authToken');
-        const response = await fetch(`${API_URL}/organizations`, organization,
-             {
-            method:'POST',
-            headers: {
-                'X-auth-token': authToken || '',
-            },
-        });
+  try {
+    const authToken = localStorage.getItem('authToken');
+    const response = await fetch(`${API_URL}/organizations`, organization,
+      {
+        method: 'POST',
+        headers: {
+          'X-auth-token': authToken || '',
+        },
+      });
 
-        if (response.status !== 201) {
-            const message = response.data?.message || 'Organization creation failed';
-            console.error('Organization creation failed:', message);
-            return message;
-        }
+    if (response.status !== 201) {
+      const message = response.data?.message || 'Organization creation failed';
+      console.error('Organization creation failed:', message);
+      return message;
+    }
 
-        return response?.data;
-    }
-    catch (error) {
-        console.error('Organization creation failed:', error);
-        throw 'Organization creation failed';
-    }
+    return response?.data;
+  }
+  catch (error) {
+    console.error('Organization creation failed:', error);
+    throw 'Organization creation failed';
+  }
 }
+
+export const getOrganizationsById = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/organizations/${id}`, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+
+    const data = await handleResponse(response);
+    return data;
+  } catch (error) {
+    console.error('Fetch organizations error:', error.message);
+    throw new Error(error.message || `Failed to fetch organizations`);
+  }
+};
+
+export const updateOrganization = async (id, updatedData) => {
+  try {
+    const response = await fetch(`${API_URL}/organizations/${id}`, {
+      method: 'PUT',
+      headers: {
+        ...getAuthHeaders(),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    const data = await handleResponse(response);
+    return data;
+  } catch (error) {
+    console.error('Update organization error:', error.message);
+    throw new Error(error.message || `Failed to update organization`);
+  }
+};
+
