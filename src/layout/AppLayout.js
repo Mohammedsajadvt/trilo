@@ -108,7 +108,7 @@ const AppLayout = ({ children }) => {
                                         <h5 className="card-title">{org.name || 'Unnamed Organization'}</h5>
                                         <button
                                             className="btn "
-                                            onClick={() => navigate(`/organizations/:id`)}
+                                            onClick={() => navigate(`/organizations/${org.id}`)}
                                         >
                                             <MdiPencil/>
                                         </button>

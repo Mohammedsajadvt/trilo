@@ -2,7 +2,7 @@ const API_URL = 'https://trilo-api.kiebot.com/api';
 
 const handleResponse = async (response) => {
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
+    const errorData = await response.json().catch((e) => console.log(`Api Error ${e}`));
     throw new Error(errorData.message || `HTTP error: ${response.status}`);
   }
   return response.json();
@@ -69,13 +69,11 @@ export const logout = () => {
 
 export const createOrganization = async (organization) => {
   try {
-    const authToken = localStorage.getItem('authToken');
+    
     const response = await fetch(`${API_URL}/organizations`, organization,
       {
         method: 'POST',
-        headers: {
-          'X-auth-token': authToken || '',
-        },
+        headers: getAuthHeaders(),
       });
 
     if (response.status !== 201) {
